@@ -3,10 +3,14 @@ const applicationElement = document.querySelector(".giffygram")
 
 
 const applicationState = {
-    currentUser: {},
-    feed: {
+    currentUser: [],
+    feed: [
+        {
         chosenUser: null,
         displayFavorites: false,
         displayMessages: false
     }
+    ]
 }
+
+export const getUsers = () => [...applicationState.currentUser]
