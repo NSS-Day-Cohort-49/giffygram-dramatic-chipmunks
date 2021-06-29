@@ -16,7 +16,7 @@ export const PostList = () => {
                         ${post.description}
                     </div>
                     <div class="post__tagline">
-                        Posted by ${postAuthor.name} on ${new Date(post.timestamp).toLocalDateString()}
+                        Posted by ${postAuthor.name} on ${new Date(post.timestamp).toLocaleDateString()}
                     </div>
                 </section>    
         `

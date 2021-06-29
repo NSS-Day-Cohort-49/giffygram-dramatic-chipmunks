@@ -2,7 +2,7 @@ const applicationElement = document.querySelector(".giffygram")
 
 applicationElement.addEventListener("click", (event) => {
     if (event.target.id === "newPost__submit") {
-        
+        const 
     }
 })
 
@@ -12,7 +12,7 @@ export const PostEntry = () => {
     let html = `
 
     <div class="newPost">
-        <input type="text" value* name="postTitle" class="newPost__input" placeholder="Title" />
+        <input type="text" name="postTitle" class="newPost__input" placeholder="Title" />
     </div>
     
     <div class="postURL">
