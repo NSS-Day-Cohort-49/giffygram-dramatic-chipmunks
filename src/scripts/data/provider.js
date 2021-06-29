@@ -68,6 +68,6 @@ export const sendPost = (postData) => {
     return fetch(`${apiURL}/posts`, fetchOptions)
         .then(response => response.json())
         .then(() => {
-            appContainer.dispatchEvent(new CustomEvent("stateChanged"))
+            applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
         })
 }

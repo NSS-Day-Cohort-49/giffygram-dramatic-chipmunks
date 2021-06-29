@@ -2,7 +2,27 @@ const applicationElement = document.querySelector(".giffygram")
 
 applicationElement.addEventListener("click", (event) => {
     if (event.target.id === "newPost__submit") {
-        const 
+        const titleName = document.querySelector("input[name='postTitle']").value
+        const urlLink = document.querySelector("input[name='postURL']").value
+        const postText = document.querySelector("input['postDescription']").value
+        const userId = parseInt(localStorage.getItem("gg_user"))
+
+        const dataToSendAPI = {
+           title: titleName,
+           imageURL: urlLink,
+           description: postText,
+           userId: userId,
+           timestamp: Date.now()
+
+        }
+
+        sendPost(dataToSendAPI)
+    }
+})
+
+applicationElement.addEventListener("click", (event) => {
+    if (event.target.id === "newPost__cancel") {
+        applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
     }
 })
 
