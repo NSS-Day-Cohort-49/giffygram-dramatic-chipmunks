@@ -55,3 +55,19 @@ export const getMessages = () => {
 export const getFollows = () => {
     return applicationState.follows.map(follow => ({...follow}))
 }
+
+export const sendPost = (postData) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(postData)
+    }
+
+    return fetch(`${apiURL}/posts`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            appContainer.dispatchEvent(new CustomEvent("stateChanged"))
+        })
+}
