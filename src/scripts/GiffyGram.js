@@ -1,5 +1,19 @@
-export const GiffyGram = () => {
+import {} from "./PostEntry.js";
+import {} from "./MessageList.js";
+import {} from "./.js";
+import {} from "./PostEntry.js";
+import {} from "./PostEntry.js";
 
-    // Show main main UI
-    return `<h1>Giffygram</h1>`
-}
+export const GiffyGram = () => {
+  // Show main main UI
+  return `
+    <h1 class="navigation">Giffygram</h1>
+    <div class"">
+        <article
+    
+    
+    
+    
+    
+    `;
+};
