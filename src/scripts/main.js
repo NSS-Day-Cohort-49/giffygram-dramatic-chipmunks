@@ -19,5 +19,6 @@ export const renderApp = () => {
 renderApp()
 
 document.addEventListener("stateChanged", event => {
+    console.log('relaoding page maybe')
     renderApp()
 })

@@ -1,10 +1,12 @@
+import { sendPost } from "../data/provider.js"
+
 const applicationElement = document.querySelector(".giffygram")
 
 applicationElement.addEventListener("click", (event) => {
     if (event.target.id === "newPost__submit") {
         const titleName = document.querySelector("input[name='postTitle']").value
         const urlLink = document.querySelector("input[name='postURL']").value
-        const postText = document.querySelector("input['postDescription']").value
+        const postText = document.querySelector("textarea[name='postDescription']").value
         const userId = parseInt(localStorage.getItem("gg_user"))
 
         const dataToSendAPI = {
@@ -22,7 +24,7 @@ applicationElement.addEventListener("click", (event) => {
 
 applicationElement.addEventListener("click", (event) => {
     if (event.target.id === "newPost__cancel") {
-        applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+        applicationElement.dispatchEvent(new CustomEvent("stateChanged", {bubbles: true}))
     }
 })
 
