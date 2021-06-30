@@ -34,18 +34,21 @@ export const PostEntry = () => {
     let html = `
 
     <div class="newPost">
-        <input type="text" name="postTitle" class="newPost__input" placeholder="Title" />
-    </div>
+        <div>
+            <input type="text" value name="postTitle" class="newPost__input" placeholder="Title" />
+        </div>
     
-    <div class="postURL">
-        <input type="text" name="postURL" class="newPost__input" placeholder="URL of GIF...aka JIF"/>
-    </div>
+        <div class="postURL">
+            <input type="text" value name="postURL" class="newPost__input" placeholder="URL of GIF/JIF"/>
+        </div>
+    
 
-        <textarea name="postDescription" class="newPost__input newPost__description" placeholder"Comments..."></textarea>
-  
-    <button id="newPost__submit">Submit</button>
-    <button id="newPost__cancel">Cancel</button>
+        <textarea name="postDescription" class="newPost__input newPost__description" placeholder="Comments..."></textarea>
     
+  
+        <button id="newPost__submit">Submit</button>
+        <button id="newPost__cancel">Cancel</button>
+    </div>
     `
 
     return html 
