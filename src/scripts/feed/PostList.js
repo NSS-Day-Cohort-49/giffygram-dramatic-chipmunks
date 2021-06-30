@@ -8,9 +8,10 @@ export const PostList = () => {
 
     let html = reversedPosts.map(post => {
         const postAuthor = users.find(user => user.id === post.userId)
+        const currentUserId = localStorage.getItem("gg_user")
         let starImg = "./images/favorite-star-blank.svg"
         let favCheck = likes.find(like => {
-            return ((post.id === like.postId) && (postAuthor.id === like.userId))
+            return ((post.id === like.postId) && (parseInt(currentUserId) === like.userId))
         })
         if (favCheck) {
             starImg = "./images/favorite-star-yellow.svg"
