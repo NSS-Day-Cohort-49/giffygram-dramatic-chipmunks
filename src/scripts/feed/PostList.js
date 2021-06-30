@@ -3,10 +3,18 @@ import { getPosts, getUsers, getLikes, getFollows } from "../data/provider.js"
 export const PostList = () => {
     let posts = getPosts()
     let users = getUsers()
+    let likes = getLikes()
     let reversedPosts = posts.sort((a, b) => b.id - a.id)
 
     let html = reversedPosts.map(post => {
         const postAuthor = users.find(user => user.id === post.userId)
+        let starImg = "./images/favorite-star-blank.svg"
+        let favCheck = likes.find(like => {
+            return ((post.id === like.postId) && (postAuthor.id === like.userId))
+        })
+        if (favCheck) {
+            starImg = "./images/favorite-star-yellow.svg"
+        }
 
         return `<section class="post">
                     <header>
@@ -18,6 +26,14 @@ export const PostList = () => {
                     </div>
                     <div class="post__tagline">
                         Posted by ${postAuthor.name} on ${new Date(post.timestamp).toLocaleDateString()}
+                    </div>
+                    <div class="post__actions">
+                        <div>
+                            <img id="favoritePost--${post.id}" class="actionIcon" src="${starImg}">
+                        </div>
+                        <div>
+                        
+                        </div>
                     </div>
                 </section>    
         `
