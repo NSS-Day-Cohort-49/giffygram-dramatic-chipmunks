@@ -1,14 +1,14 @@
-import { getPosts, getUsers, getLikes, getFollows } from "../data/provider.js";
+import { getPosts, getUsers, getLikes, getFollows } from "../data/provider.js"
 
 export const PostList = () => {
-  const posts = getPosts();
-  const users = getUsers();
+    let posts = getPosts()
+    let users = getUsers()
+    let reversedPosts = posts.sort((a, b) => b.id - a.id)
 
-  let html = posts
-    .map((post) => {
-      const postAuthor = users.find((user) => user.id === post.userId);
+    let html = reversedPosts.map(post => {
+        const postAuthor = users.find(user => user.id === post.userId)
 
-      return `<section class="post">
+        return `<section class="post">
                     <header>
                         <h2 class="post__title">${post.title}</h2>
                     </header>
@@ -17,17 +17,14 @@ export const PostList = () => {
                         ${post.description}
                     </div>
                     <div class="post__tagline">
-                        Posted by ${postAuthor.name} on ${new Date(
-        post.timestamp
-      ).toLocaleDateString()}
+                        Posted by ${postAuthor.name} on ${new Date(post.timestamp).toLocaleDateString()}
                     </div>
                 </section>    
-        `;
-    })
-    .join("");
+        `
+    }).join("")
 
-  return html;
-};
+    return html
+}
 
 /* Pseudocode for future implementation of filters:
 
