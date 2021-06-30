@@ -102,3 +102,11 @@ export const deleteLike = (id) => {
     );
   });
 };
+
+export const deletePost = (id) => {
+  return fetch(`${apiURL}/posts/${id}`, { method: "DELETE" }).then(() => {
+    applicationElement.dispatchEvent(
+      new CustomEvent("stateChanged", { bubbles: true })
+    );
+  });
+};
