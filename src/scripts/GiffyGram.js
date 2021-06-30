@@ -1,7 +1,7 @@
 import {} from "./nav/NavBar.js";
 import { PostList } from "./feed/PostList.js";
-import {} from "./nav/Footer.js";
-import { PostEntry } from "./feed/PostEntry.js"
+import { Footer } from "./nav/Footer.js";
+import { PostEntry } from "./feed/PostEntry.js";
 
 export const GiffyGram = () => {
   // Show main main UI
@@ -19,7 +19,7 @@ export const GiffyGram = () => {
             ${PostList()}
         </section>
         <div class="footer">
-            footer
+            ${Footer()}
         </div>
     </div>
     `;
