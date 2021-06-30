@@ -1,4 +1,4 @@
-import { getPosts, getUsers, getLikes, getFollows } from "../data/provider.js"
+import { getPosts, getUsers, getLikes, getFollows, sendLike, deleteLike } from "../data/provider.js"
 
 export const PostList = () => {
     let posts = getPosts()
@@ -41,6 +41,27 @@ export const PostList = () => {
 
     return html
 }
+
+document.addEventListener("click", event => {
+    if (event.target.id.startsWith("favoritePost")) {
+        const userId = localStorage.getItem("gg_user")
+        const likes = getLikes()
+        const [,postId] = event.target.id.split("--")
+
+        const like = likes.find(like => like.postId === parseInt(postId))
+
+        if (!like) {
+            const dataToSendAPI = {
+                userId: parseInt(userId),
+                postId: parseInt(postId)
+            }
+
+            sendLike(dataToSendAPI)
+        } else {
+            deleteLike(parseInt(like.id))
+        }
+    }
+})
 
 /* Pseudocode for future implementation of filters:
 
