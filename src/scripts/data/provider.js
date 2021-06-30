@@ -71,3 +71,28 @@ export const sendPost = (postData) => {
             applicationElement.dispatchEvent(new CustomEvent("stateChanged", {bubbles: true}))
         })
 }
+
+export const sendLike = (likeData) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(likeData)
+    }
+
+    return fetch(`${apiURL}/likes`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            applicationElement.dispatchEvent(new CustomEvent("stateChanged", {bubbles: true}))
+        })
+}
+
+export const deleteLike = (id) => {
+    return fetch(`${apiURL}/likes/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                applicationElement.dispatchEvent(new CustomEvent("stateChanged", {bubbles: true}))
+            }
+        )
+}
