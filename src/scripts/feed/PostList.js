@@ -1,4 +1,4 @@
-import { getPosts, getUsers, getLikes, getFollows, sendLike, deleteLike } from "../data/provider.js"
+import { getPosts, getUsers, getLikes, getFollows, sendLike, deleteLike, deletePost } from "../data/provider.js"
 
 export const PostList = () => {
     let posts = getPosts()
@@ -15,6 +15,10 @@ export const PostList = () => {
         })
         if (favCheck) {
             starImg = "./images/favorite-star-yellow.svg"
+        }
+        let deleteButton = ""
+        if (postAuthor.id === parseInt(currentUserId)) {
+            deleteButton = `<img id="deletePost--${post.id}" class="actionIcon" src="./images/block.svg"></img>`
         }
 
         return `<section class="post">
@@ -33,7 +37,7 @@ export const PostList = () => {
                             <img id="favoritePost--${post.id}" class="actionIcon" src="${starImg}">
                         </div>
                         <div>
-                        
+                            ${deleteButton}
                         </div>
                     </div>
                 </section>    
@@ -61,6 +65,13 @@ document.addEventListener("click", event => {
         } else {
             deleteLike(parseInt(like.id))
         }
+    }
+})
+
+document.addEventListener("click", event => {
+    if (event.target.id.startsWith("deletePost")) {
+        const [,postId] = event.target.id.split("--")
+        deletePost(parseInt(postId))
     }
 })
 
