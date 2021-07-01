@@ -1,12 +1,19 @@
-import { applicationState, getMessages, getUsers } from "../data/provider";
-import { GiffyGram } from "../GiffyGram";
+import { getMessages, getUsers } from "../data/provider.js";
 
-let miniMode = !![];
+export const MessageList = () => {
+  const messages = getMessages();
+  const users = getUsers();
+  let html = "";
+  const currentUserId = localStorage.getItem("gg_user");
 
-const applicationElement = document.querySelector(GiffyGram);
-const messages = getMessages;
+  let filteredMessages = messages.filter((message) => {
+    return parseInt(currentUserId) === messages.userId;
+  });
 
-document.addEventListener("change", (event) => {
-  if (event.target.id === "notification__count") && (miniMode = !![],
-    document.dispatchEvent(new CustomEvent("stateChanged", { bubbles: true })))
-});
+  html += `
+    <div class="message_list" id="${filteredMessages.id}"> Message from: ${filteredMessages.userId} 
+    Message: ${filteredMessages.text}
+    </div>`;
+
+  return html;
+};

@@ -1,12 +1,9 @@
-
-
 // document.addEventListener("click", (event) => {
 //     if (event.target.id === "logo")
 // )}
 
 export const navBar = () => {
-
-    let html = `
+  let html = `
         <nav class="navigation">
             <div class="navigation__item navigation__icon">
                 <img src="./images/pb.png" id="logo" alt="Jar of Peanut Butter>
@@ -16,7 +13,7 @@ export const navBar = () => {
             </div>
             <div class="navigation__item navigation__message">
                 <img src="./images/fountain-pen.svg" alt="Pen">
-                    <div class="notification__count">
+                    <div class="notification__count" id="notification__count">
                     0
                     </div>
             </div>
@@ -27,7 +24,7 @@ export const navBar = () => {
         </nav>
     
     
-    `
+    `;
 
-    return html 
-}
+  return html;
+};
