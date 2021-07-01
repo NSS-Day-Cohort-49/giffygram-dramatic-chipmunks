@@ -18,6 +18,7 @@ document.addEventListener("change", (event) => {
     if (event.target.value === "All") {
       applicationState.feed.chosenUser = null;
     }
+    document.dispatchEvent(new CustomEvent("stateChanged", { bubbles: true }));
   }
 });
 
@@ -25,7 +26,11 @@ export const Footer = () => {
   const users = getUsers();
   let dropdownHTML = users
     .map((user) => {
-      return `<option value="${user.id}"> ${user.name}</option>`;
+      let authorDropdown = "";
+      if (parseInt(applicationState.feed.chosenUser) === user.id) {
+        authorDropdown = "selected";
+      }
+      return `<option value="${user.id}" ${authorDropdown}> ${user.name}</option>`;
     })
     .join("");
 
@@ -33,14 +38,20 @@ export const Footer = () => {
   if (applicationState.feed.displayFavorites) {
     checkBox = "checked";
   }
+
+  let allDropdown = "";
+  if (!applicationState.feed.chosenUser) {
+    allDropdown = "selected";
+  }
+
   let html = `
   <div class="footer__item">Posts since
-    <select name="post_since_dropdown" id="chosenUser">
+    <select name="post_since_dropdown" id="post_since_dropdown"><option> 2021 </option><option> 2020 </option><option> 2019 </option><option> 2018 </option>
     </select>
   </div>
   <div class="footer__item">Posts by user
     <select name="author_display_dropdown" id="author_display_dropdown"> 
-    ${dropdownHTML} <option value="All"> All Users</option>
+    ${dropdownHTML} <option value="All" ${allDropdown}> All Users</option>
     </select>
   </div>
   <div class="footer__item">Show only favorites
