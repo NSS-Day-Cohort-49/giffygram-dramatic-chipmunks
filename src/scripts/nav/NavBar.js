@@ -1,3 +1,4 @@
+import { getMessages } from "../data/provider.js"
 
 
 const applicationElement = document.querySelector(".giffygram")
@@ -9,8 +10,14 @@ document.addEventListener("click", (event) => {
 })
 
 
-
+//Does not update page with number of messages
 export const navBar = () => {
+    const messages = getMessages()
+    const currentUserId = parseInt(localStorage.getItem("gg_user"))
+    let filterMessages = messages.filter((message => {
+        return currentUserId === message.recipientId && message.read === true
+    }))
+   
 
     let html = `
         <nav class="navigation">
@@ -23,7 +30,7 @@ export const navBar = () => {
             <div class="navigation__item navigation__message">
                 <img src="./images/fountain-pen.svg" alt="Pen">
                     <div class="notification__count">
-                    0
+                    ${filterMessages.length}
                     </div>
             </div>
             <div class="navigation__item navigation__logout">
