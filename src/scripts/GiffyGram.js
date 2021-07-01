@@ -1,4 +1,4 @@
-import {} from "./nav/NavBar.js";
+import { navBar } from "./nav/NavBar.js";
 import { PostList } from "./feed/PostList.js";
 import { Footer } from "./nav/Footer.js";
 import { PostEntry } from "./feed/PostEntry.js";
@@ -8,7 +8,7 @@ export const GiffyGram = () => {
   return `
     <div class="giffygram__feed">
         <div class="navigation">
-           navbar
+           ${navBar()}
         </div>
         <div class="post__entry__form">
             <div><button class="miniMode" id="miniMode">POST GIF HERE</button>
