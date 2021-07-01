@@ -10,9 +10,7 @@ export const GiffyGram = () => {
            ${navBar()}
         </div>
         <div class="post__entry__form">
-            <div><button class="miniMode" id="miniMode">POST GIF HERE</button>
-            ${PostEntry()}
-            </div>
+            <button class="miniMode" id="miniMode">Click here to post a gif!</button>
         </div>
         <section class="post">
             ${PostList()}
@@ -23,3 +21,10 @@ export const GiffyGram = () => {
     </div>
     `;
 };
+
+document.addEventListener("click", event => {
+    if (event.target.id === "miniMode") {
+        const entryFormContainer = document.querySelector(".post__entry__form")
+        entryFormContainer.innerHTML = PostEntry()
+    }
+})
