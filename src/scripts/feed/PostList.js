@@ -16,6 +16,11 @@ export const PostList = () => {
         filteredPosts = reversedPosts
     }
 
+    if (applicationState.feed.chosenUser) {
+        const chosenUserId = applicationState.feed.chosenUser
+        filteredPosts = filteredPosts.filter(post => post.userId === parseInt(chosenUserId))
+    }
+
     let html = formatPosts(filteredPosts)
 
     return html
