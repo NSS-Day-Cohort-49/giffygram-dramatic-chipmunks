@@ -7,7 +7,6 @@ export const GiffyGram = () => {
   // Show main main UI
   return `
     <div class="giffygram__feed">
-        <div class="navigation">
            ${navBar()}
         </div>
         <div class="post__entry__form">

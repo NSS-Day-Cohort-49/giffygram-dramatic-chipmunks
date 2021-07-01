@@ -1,5 +1,9 @@
 
 
+// document.addEventListener("click", (event) => {
+//     if (event.target.id === "logo")
+// )}
+
 export const navBar = () => {
 
     let html = `
