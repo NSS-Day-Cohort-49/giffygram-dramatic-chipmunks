@@ -1,12 +1,30 @@
-import { getPosts, getUsers, getLikes, getFollows, sendLike, deleteLike, deletePost } from "../data/provider.js"
+import { getPosts, getUsers, getLikes, getFollows, sendLike, deleteLike, deletePost, applicationState } from "../data/provider.js"
 
 export const PostList = () => {
     let posts = getPosts()
-    let users = getUsers()
     let likes = getLikes()
     let reversedPosts = posts.sort((a, b) => b.id - a.id)
 
-    let html = reversedPosts.map(post => {
+    let filteredPosts = []
+
+    if (applicationState.feed.displayFavorites) {
+        filteredPosts = reversedPosts.filter(post => {
+            const likedPost = likes.find(like => post.id === like.postId)
+            return likedPost
+        })
+    } else {
+        filteredPosts = reversedPosts
+    }
+
+    let html = formatPosts(filteredPosts)
+
+    return html
+}
+
+const formatPosts = (postList) => {
+    let html = postList.map(post => {
+        const users = getUsers()
+        const likes = getLikes()
         const postAuthor = users.find(user => user.id === post.userId)
         const currentUserId = localStorage.getItem("gg_user")
         let starImg = "./images/favorite-star-blank.svg"
@@ -46,6 +64,9 @@ export const PostList = () => {
 
     return html
 }
+
+
+/* event listeners for action icons */
 
 document.addEventListener("click", event => {
     if (event.target.id.startsWith("favoritePost")) {
