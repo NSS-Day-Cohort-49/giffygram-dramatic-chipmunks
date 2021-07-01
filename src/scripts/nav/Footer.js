@@ -12,11 +12,14 @@ document.addEventListener("change", (event) => {
   }
 });
 
-// document.addEventListener("change", (event) => {
-//   const userDropdown = document.querySelector("#chosenUser")
-//   if (event.target.id === "author_display_dropdown") {
-
-// });
+document.addEventListener("change", (event) => {
+  if (event.target.id === "author_display_dropdown") {
+    applicationState.feed.chosenUser = event.target.value;
+    if (event.target.value === "All") {
+      applicationState.feed.chosenUser = null;
+    }
+  }
+});
 
 export const Footer = () => {
   const users = getUsers();
