@@ -1,8 +1,14 @@
 
 
-// document.addEventListener("click", (event) => {
-//     if (event.target.id === "logo")
-// )}
+const applicationElement = document.querySelector(".giffygram")
+
+document.addEventListener("click", (event) => {
+    if (event.target.id === "logo") {
+        applicationElement.dispatchEvent(new CustomEvent("stateChanged", {bubbles: true}))
+    }
+})
+
+
 
 export const navBar = () => {
 
