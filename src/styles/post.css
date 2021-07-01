@@ -1,5 +1,6 @@
 .miniMode {
     padding: 1rem;
+    width: 50%;
     margin: 0 25%;
     border: 1px dashed slategrey;
     border-radius: 0.5rem;
