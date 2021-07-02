@@ -1,4 +1,4 @@
-import { getMessages, getUsers } from "../data/provider.js";
+import { getMessages, getUsers, updateRead } from "../data/provider.js";
 
 export const MessageList = () => {
   const messages = getMessages();
@@ -18,6 +18,12 @@ const formatMessages = (filteredMessages) => {
 
   let html = filteredMessages.map(message => {
           const sender = users.find(user => user.id === message.userId)
+          updateRead(message.id, {
+                      userId: message.userId,
+                      recipientId: message.recipientId,
+                      text: message.text,
+                      read: true
+          })
     
     return `<div class="message_list" id="${message.id}"> Message from: ${sender.name} 
           <br>
