@@ -10,7 +10,6 @@ document.addEventListener("click", (event) => {
 })
 
 
-//Does not update page with number of messages
 export const navBar = () => {
     const messages = getMessages()
     const currentUserId = parseInt(localStorage.getItem("gg_user"))
@@ -40,7 +39,7 @@ export const navBar = () => {
         </nav>
     
     
-    `
+    `;
 
-    return html 
-}
+  return html;
+};
