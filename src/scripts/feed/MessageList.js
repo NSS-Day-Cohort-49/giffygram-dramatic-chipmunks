@@ -11,8 +11,8 @@ export const MessageList = () => {
   });
 
   html += `
-    <div class="message_list" id="${filteredMessages.id}"> Message from: ${filteredMessages.userId} 
-    Message: ${filteredMessages.text}
+    <div class="message_list" id="${messages.id}"> Message from: ${messages.userId} 
+    Message: ${messages.text}
     </div>`;
 
   return html;
