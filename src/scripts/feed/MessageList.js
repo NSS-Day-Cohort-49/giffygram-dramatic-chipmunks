@@ -2,18 +2,29 @@ import { getMessages, getUsers } from "../data/provider.js";
 
 export const MessageList = () => {
   const messages = getMessages();
-  const users = getUsers();
-  let html = "";
   const currentUserId = localStorage.getItem("gg_user");
 
   let filteredMessages = messages.filter((message) => {
-    return parseInt(currentUserId) === messages.userId;
+    return parseInt(currentUserId) === message.recipientId;
   });
 
-  html += `
-    <div class="message_list" id="${messages.id}"> Message from: ${messages.userId} 
-    Message: ${messages.text}
-    </div>`;
+  let html = formatMessages(filteredMessages)
 
   return html;
 };
+
+const formatMessages = (filteredMessages) => {
+  const users = getUsers()
+
+  let html = filteredMessages.map(message => {
+          const sender = users.find(user => user.id === message.userId)
+    
+    return `<div class="message_list" id="${message.id}"> Message from: ${sender.name} 
+          <br>
+          Message: ${message.text}
+          </div>
+          <br>`
+  }).join("")
+
+  return html
+}
