@@ -14,7 +14,7 @@ export const navBar = () => {
     const messages = getMessages()
     const currentUserId = parseInt(localStorage.getItem("gg_user"))
     let filterMessages = messages.filter((message => {
-        return currentUserId === message.recipientId && message.read === true
+        return currentUserId === message.recipientId && message.read === false
     }))
    
 

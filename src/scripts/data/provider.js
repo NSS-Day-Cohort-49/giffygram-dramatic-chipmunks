@@ -110,3 +110,16 @@ export const deletePost = (id) => {
     );
   });
 };
+
+export const updateRead = (id, readData) => {
+  const fetchOptions = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(readData),
+  };
+
+  return fetch(`${apiURL}/messages/${id}`, fetchOptions)
+    .then((response) => response.json())
+}
